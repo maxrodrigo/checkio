@@ -6,39 +6,42 @@
 # - the output format should be 'hh:mm a.m.' (for hours before midday) or 'hh:mm p.m.' (for hours after midday)
 # - if hours is less than 10 - don't write a '0' before it. For example: '9:05 a.m.'
 # Here you can find some useful information about the12-hour format.
-# 
-# 
-# 
+#
+#
+#
 # Input:Time in a 24-hour format (as a string).
-# 
+#
 # Output:Time in a 12-hour format (as a string).
-# 
+#
 # Precondition:
 # '00:00'<= time<= '23:59'
-# 
-# 
+#
+#
 # END_DESC
 
+
 def time_converter_v1(time):
-    h24,m = time.split(":")
+    h24, m = time.split(":")
     h = int(h24) % 12 or 12
     ampm = "a.m." if int(h24) > 12 else "p.m."
     time = "{}:{} {}".format(h, m, ampm)
     return time
 
+
 # with f-strings
 def time_converter(time):
-    h24,m = map(int, time.split(":"))
+    h24, m = map(int, time.split(":"))
     ampm = ("a.m.", "p.m.")[h24 // 12]
     time = f"{h24 % 12 or 12}:{m:02d} {ampm}"
     return time
 
-if __name__ == '__main__':
-    print("Example:")
-    print(time_converter('12:30'))
 
-    #These "asserts" using only for self-checking and not necessary for auto-testing
-    assert time_converter('12:30') == '12:30 p.m.'
-    assert time_converter('09:00') == '9:00 a.m.'
-    assert time_converter('23:15') == '11:15 p.m.'
+if __name__ == "__main__":
+    print("Example:")
+    print(time_converter("12:30"))
+
+    # These "asserts" using only for self-checking and not necessary for auto-testing
+    assert time_converter("12:30") == "12:30 p.m."
+    assert time_converter("09:00") == "9:00 a.m."
+    assert time_converter("23:15") == "11:15 p.m."
     print("Coding complete? Click 'Check' to earn cool rewards!")
